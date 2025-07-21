@@ -1,140 +1,239 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ZenTech | Digital Design Service</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+  <title>ZenTech Design</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'Montserrat', sans-serif;
-      background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
-      color: #fff;
-      padding: 2rem;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Outfit', sans-serif;
     }
-    .loader {
+    body {
+      background: #0a0a0a;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
       position: fixed;
       top: 0; left: 0;
-      width: 100%; height: 100%;
-      background-color: #0f2027;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 1000;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, #0ff, #8000ff, #0ff);
+      background-size: 400% 400%;
+      animation: pulse 15s ease infinite;
+      z-index: -1;
+      opacity: 0.15;
+      filter: blur(80px);
     }
-    .loader::after {
-      content: "ZenTech";
-      font-size: 2rem;
-      color: cyan;
-      animation: pulse 1.5s infinite;
-    }
+
     @keyframes pulse {
-      0% { opacity: 0.2; }
-      50% { opacity: 1; }
-      100% { opacity: 0.2; }
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
     }
-    .container {
-      max-width: 900px;
-      margin: auto;
+
+    header {
       text-align: center;
+      padding: 3rem 1rem;
+      color: #00f7ff;
+      text-shadow: 0 0 20px #00f7ff;
     }
-    .logo img {
-      max-width: 150px;
+    header h1 {
+      font-size: 3.5rem;
+    }
+    header p {
+      font-size: 1.3rem;
+      font-weight: 500;
+    }
+
+    .loading-screen {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .loader {
+      width: 80px;
+      height: 80px;
+      border: 6px solid #00f7ff;
+      border-top: 6px solid #ff00cc;
       border-radius: 50%;
-      margin-bottom: 1rem;
+      animation: spin 1s linear infinite;
+      box-shadow: 0 0 30px #00f7ff, 0 0 60px #ff00cc;
     }
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      color: cyan;
+
+    @keyframes spin {
+      0% { transform: rotate(0deg);}
+      100% { transform: rotate(360deg);}
     }
-    p.desc {
-      font-size: 1.1rem;
+
+    .container {
+      padding: 3rem 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 2rem;
       margin-bottom: 2rem;
-      color: #ccc;
+      color: #fff;
+      text-shadow: 0 0 10px #0ff;
     }
+
     .portfolio {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
     }
-    .portfolio a {
-      display: block;
-      padding: 1rem;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 10px;
-      text-decoration: none;
-      color: white;
-      transition: all 0.3s ease;
+
+    .portfolio img {
+      width: 100%;
+      border: 2px solid #00f7ff;
+      border-radius: 14px;
+      transition: transform 0.4s ease;
+      box-shadow: 0 5px 25px rgba(0, 255, 255, 0.3);
     }
-    .portfolio a:hover {
-      background-color: cyan;
-      color: black;
+
+    .portfolio img:hover {
+      transform: scale(1.07);
     }
-    .order-section {
-      margin-top: 3rem;
-    }
-    .order-section h2 {
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
-      color: cyan;
-    }
-    .order-section a {
-      display: inline-block;
-      background: cyan;
-      color: black;
-      padding: 1rem 2rem;
-      border-radius: 25px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: background 0.3s;
-    }
-    .order-section a:hover {
-      background: #00ffee;
-    }
-    footer {
+
+    .payment-section {
       margin-top: 4rem;
-      font-size: 0.9rem;
+      padding: 2rem;
+      border-radius: 20px;
+      background: rgba(0, 0, 0, 0.4);
+      border: 2px solid #0ff;
+      box-shadow: 0 0 25px rgba(0, 255, 255, 0.3);
+    }
+
+    .payment-section h2 {
+      color: #ff00cc;
+      margin-bottom: 1rem;
+      text-align: center;
+      text-shadow: 0 0 10px #ff00cc;
+    }
+
+    .qris-img {
+      max-width: 220px;
+      display: block;
+      margin: 1rem auto;
+      border-radius: 12px;
+      box-shadow: 0 0 15px #0ff;
+    }
+
+    .copy-btn {
+      background: #0ff;
+      border: none;
+      padding: 0.6rem 1.3rem;
+      border-radius: 8px;
+      cursor: pointer;
+      color: #000;
+      font-weight: bold;
+      margin-left: 0.5rem;
+      box-shadow: 0 0 10px #0ff;
+    }
+
+    .contact-owner {
+      margin-top: 2rem;
+      text-align: center;
+    }
+
+    .contact-owner a {
+      background: #ff00cc;
+      padding: 0.8rem 1.6rem;
+      display: inline-block;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 14px;
+      font-weight: bold;
+      box-shadow: 0 0 10px #ff00cc;
+    }
+
+    .owner-img {
+      max-width: 100px;
+      border-radius: 50%;
+      margin-top: 2rem;
+      border: 3px solid #ff00cc;
+      box-shadow: 0 0 20px #ff00cc;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 4rem;
       color: #aaa;
+      font-size: 0.9rem;
     }
   </style>
 </head>
 <body>
-  <div class="loader" id="loader"></div>  <div class="container" style="display:none" id="content">
-    <div class="logo">
-      <img src="https://files.catbox.moe/cvxvu5.jpg" alt="ZenTech Logo">
+  <div class="loading-screen" id="loader">
+    <div class="loader"></div>
+  </div>
+
+  <header>
+    <h1>ZenTech Design</h1>
+    <p>Desain Premium, Aura Profesional</p>
+  </header>
+
+  <div class="container">
+    <h2>Portofolio</h2>
+    <div class="portfolio">
+      <img src="https://files.catbox.moe/zyh55n.jpg" alt="Design 1">
+      <img src="https://files.catbox.moe/gfh2ek.jpg" alt="Design 2">
+      <img src="https://files.catbox.moe/f956p0.jpg" alt="Design 3">
+      <img src="https://files.catbox.moe/cvxvu5.jpg" alt="Design 4">
+      <img src="https://img1.pixhost.to/images/7372/624428572_imgtmp.jpg" alt="Design 5">
     </div>
-    <h1>ZenTech Design Studio</h1>
-    <p class="desc">Desain grafis profesional untuk kebutuhan branding, sosial media, dan digital bisnis Anda.</p><div class="portfolio">
-  <a href="https://drive.google.com/drive/folders/15rtcO5unGyVMhFwob-I2CGGnQ3ZkAi4W" target="_blank">Lihat Portofolio Desain</a>
-  <a href="https://wa.me/6283163411954" target="_blank">Hubungi WhatsApp Owner</a>
-</div>
 
-<div class="order-section">
-  <h2>Ingin Order Desain?</h2>
-  <a href="https://wa.me/6283163411954" target="_blank">Order Sekarang via WhatsApp</a>
-</div>
+    <div class="payment-section">
+      <h2>Pembayaran</h2>
+      <p style="text-align: center;">Silakan bayar ke:</p>
+      <p style="text-align: center;">
+        DANA: <b>089507756184</b>
+        <button class="copy-btn" onclick="copyText('089507756184')">Salin</button>
+      </p>
+      <img class="qris-img" src="https://files.catbox.moe/3u9kqd.jpg" alt="QRIS">
 
-<div class="order-section">
-  <h2>Pembayaran</h2>
-  <p>Kami menerima pembayaran via:</p>
-  <ul>
-    <li>DANA: akan dikirim setelah order via WA</li>
-    <li>QRIS (akan dikirim setelah order via WA)</li>
-  </ul>
-</div>
+      <div class="contact-owner">
+        <h3>Konfirmasi Pembayaran</h3>
+        <a href="https://wa.me/6283163411954?text=Halo%20ZenTech,%20saya%20sudah%20bayar.%20Ini%20bukti%20pembayarannya:">Hubungi via WhatsApp</a>
+      </div>
+    </div>
 
-<footer>
-  &copy; 2025 ZenTech. Rajanya Design👑.
-</footer>
- </div>  
-  
+    <div style="text-align: center;">
+      <h3>Owner:</h3>
+      <img class="owner-img" src="https://img1.pixhost.to/images/7372/624437380_imgtmp.jpg" alt="Owner ZenTech">
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 ZenTech Design | Build With Style.
+  </footer>
+
   <script>
-    window.addEventListener("load", () => {
-      document.getElementById("loader").style.display = "none";
-      document.getElementById("content").style.display = "block";
+    const loader = document.getElementById('loader');
+    window.addEventListener('load', () => {
+      setTimeout(() => loader.style.display = 'none', 1500);
     });
+
+    function copyText(text) {
+      navigator.clipboard.writeText(text);
+      alert('Nomor DANA disalin: ' + text);
+    }
   </script>
-  </body>
+</body>
 </html>
